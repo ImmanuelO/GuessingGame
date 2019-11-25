@@ -20,6 +20,8 @@ namespace iman_game {
 	private:
 		GameType gameMode;
 
+		void displaySelectedGameMode();
+
 		void clearScreen();
 
 		

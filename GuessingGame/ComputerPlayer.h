@@ -11,7 +11,7 @@ namespace iman_game {
 		ComputerPlayer();
 	
 
-		void getGuess();
+		int getGuess();
 	};
 
 }

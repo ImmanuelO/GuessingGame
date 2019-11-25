@@ -12,7 +12,7 @@ namespace iman_game {
 		GuessingGame(unsigned int seed);
 		~GuessingGame();
 
-		void startGame();
+		void playGame();
 
 	private:
 		int numberToGuess;
@@ -24,6 +24,10 @@ namespace iman_game {
 
 		void generateNumber();
 		void initializePlayers();
+		void initializeGame();
+		bool checkForWin(Player * player);
+		
+
 	};
 
 }

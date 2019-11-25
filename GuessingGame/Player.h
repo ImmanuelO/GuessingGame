@@ -6,9 +6,9 @@ namespace iman_game {
 	public:
 		Player();
 
-		virtual void getGuess() = 0;
+		virtual int getGuess() = 0;
 
-	private:
+	protected:
 		int guess;
 	};
 

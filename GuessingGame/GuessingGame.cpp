@@ -32,16 +32,49 @@ iman_game::GuessingGame::~GuessingGame()
 	delete player2;
 }
 
-void iman_game::GuessingGame::startGame()
+void iman_game::GuessingGame::playGame()
 {
-	gameMode.selectGameMode();
-	initializePlayers();
+	initializeGame();
 
+	bool win = false;
+	while (!win)
+	{
+		std::cout << "Player 1's turn to guess." << std::endl;
+		win = checkForWin(player1);
+		if (win) return;
+
+		std::cout << "Player 2's turn to guess." << std::endl;
+		win = checkForWin(player2);
+	}
 }
+
+
 
 void iman_game::GuessingGame::generateNumber()
 {
-	numberToGuess = std::rand() % rangeOfNumberToGuess;
+	//numberToGuess = std::rand() % rangeOfNumberToGuess;
+	numberToGuess = 20;
+}
+
+void iman_game::GuessingGame::initializeGame()
+{
+	gameMode.selectGameMode();
+	initializePlayers();
+}
+
+bool iman_game::GuessingGame::checkForWin(Player * player)
+{
+
+	if (numberToGuess == player->getGuess())
+	{
+		std::cout << "You're right! You win!" << std::endl;
+		return true;
+	}
+	else if (numberToGuess < player->getGuess())
+		std::cout << "Your guess is too high." << std::endl;
+	else
+		std::cout << "Your guess is too low." << std::endl;
+	return false;
 }
 
 void iman_game::GuessingGame::initializePlayers()

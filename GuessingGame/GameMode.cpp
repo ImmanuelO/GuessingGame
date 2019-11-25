@@ -14,16 +14,19 @@ void iman_game::GameMode::selectGameMode()
 
 	do
 	{
-		std::cout << " Select Game Mode:\n";
+		clearScreen();
+
+		std::cout << "Select Game Mode:\n";
 		std::cout << " 1. Single PLayer \n 2. Multiplayer \n 3. Computer " << std::endl;
 		std::cout << "Enter: ";
-		
 		std::cin >> user_input;
+
+		std::cout << std::endl;
 
 		gameMode = static_cast<GameType> (user_input);
 
+		displaySelectedGameMode();
 
-		clearScreen();
 
 	} while (gameMode < GameType::SINGLE_PLAYER || gameMode > GameType::COMPUTER_PLAYER);
 }
@@ -35,7 +38,27 @@ iman_game::GameType iman_game::GameMode::currentgameMode()
 }
 
 
-void iman_game::GameMode::clearScreen()
+
+
+void iman_game::GameMode::displaySelectedGameMode()
+{
+	switch (gameMode)
+	{
+	case GameType::SINGLE_PLAYER:
+		std::cout << "******* Singe Player Mode ********* \n";
+		break;
+	case GameType::MULTI_PLAYER:
+		std::cout << "******* Multi Player Mode ********* \n";
+		break;
+	case GameType::COMPUTER_PLAYER:
+		std::cout << "******* Computer Player Mode ********* \n";
+		break;
+	default:
+		break;
+	}
+}
+
+	void iman_game::GameMode::clearScreen()
 {
 
 	HANDLE                     hStdOut;

@@ -6,8 +6,8 @@
 #include "ComputerPlayer.h"
 
 iman_game::PlayerCreation::PlayerCreation(GameMode & gameSelected,
-	                                      Player * player1,
-	                                      Player * player2)
+	                                      Player *& player1,
+	                                      Player *&player2)
 {
 	switch (gameSelected.currentgameMode())
 	{
@@ -26,19 +26,19 @@ iman_game::PlayerCreation::PlayerCreation(GameMode & gameSelected,
 }
 
 
-void iman_game::PlayerCreation::singlePlayer(Player * player1, Player * player2)
+void iman_game::PlayerCreation::singlePlayer(Player *& player1, Player *& player2)
 {
 	player1 = new HumanPlayer;
 	player2 = new ComputerPlayer;
 }
 
-void iman_game::PlayerCreation::multiPlayer(Player * player1, Player * player2)
+void iman_game::PlayerCreation::multiPlayer(Player *& player1, Player *& player2)
 {
 	player1 = new HumanPlayer;
 	player2 = new HumanPlayer;
 }
 
-void iman_game::PlayerCreation::computerPlayer(Player * player1, Player * player2)
+void iman_game::PlayerCreation::computerPlayer(Player *& player1, Player *& player2)
 {
 	player1 = new ComputerPlayer;
 	player2 = new ComputerPlayer;

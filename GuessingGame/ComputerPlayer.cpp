@@ -6,7 +6,8 @@ iman_game::ComputerPlayer::ComputerPlayer()
 {
 }
 
-void iman_game::ComputerPlayer::getGuess()
+int iman_game::ComputerPlayer::getGuess()
 {
+	return guess;
 }
 

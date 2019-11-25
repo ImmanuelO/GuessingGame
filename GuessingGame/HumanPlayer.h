@@ -8,7 +8,7 @@ namespace iman_game {
 	public:
 		HumanPlayer();
 	
-		void getGuess();
+		int getGuess();
 	};
 
 }
