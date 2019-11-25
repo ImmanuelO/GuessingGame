@@ -4,26 +4,33 @@
 #include <Windows.h>
 
 
-iman_game::GameMode::GameMode() : gameMode(1)
+iman_game::GameMode::GameMode() : gameMode(GameType::SINGLE_PLAYER)
 {
 }
 
 void iman_game::GameMode::selectGameMode()
 {
+	int user_input;
+
 	do
 	{
 		std::cout << " Select Game Mode:\n";
 		std::cout << " 1. Single PLayer \n 2. Multiplayer \n 3. Computer " << std::endl;
 		std::cout << "Enter: ";
-		std::cin >> gameMode;
+		
+		std::cin >> user_input;
+
+		gameMode = static_cast<GameType> (user_input);
+
 
 		clearScreen();
 
-	} while (gameMode < 1 || gameMode > 3);
+	} while (gameMode < GameType::SINGLE_PLAYER || gameMode > GameType::COMPUTER_PLAYER);
 }
 
-int iman_game::GameMode::currentgameMode()
+iman_game::GameType iman_game::GameMode::currentgameMode()
 {
+
 	return gameMode;
 }
 

@@ -2,6 +2,12 @@
 
 
 namespace iman_game {
+	enum class GameType 
+	{
+		SINGLE_PLAYER = 1,
+		MULTI_PLAYER,
+		COMPUTER_PLAYER,
+	};
 
 	class GameMode
 	{
@@ -9,10 +15,10 @@ namespace iman_game {
 		GameMode();
 
 		void selectGameMode();
-		int currentgameMode();
+		GameType currentgameMode();
 	
 	private:
-		int gameMode;
+		GameType gameMode;
 
 		void clearScreen();
 

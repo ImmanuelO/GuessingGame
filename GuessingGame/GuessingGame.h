@@ -1,8 +1,10 @@
 #pragma once
 #include "GameMode.h"
-#include "Player.h"
 
 namespace iman_game {
+
+
+	class Player;
 
 	class GuessingGame
 	{
@@ -10,7 +12,7 @@ namespace iman_game {
 		GuessingGame(unsigned int seed);
 		~GuessingGame();
 
-		void playGame();
+		void startGame();
 
 	private:
 		int numberToGuess;
@@ -21,7 +23,7 @@ namespace iman_game {
 		Player* player2;
 
 		void generateNumber();
-
+		void initializePlayers();
 	};
 
 }
