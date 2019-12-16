@@ -1,28 +1,30 @@
 #include "pch.h"
 #include <iostream>
 #include <iomanip>
-#include <ctime>
+#include <chrono>
 #include "GameMode.h"
 #include "GuessingGame.h"
 #include "Player.h"
 #include "PlayerCreation.h"
+#include <random>
 
 
-int main() {
-	iman_game::GuessingGame jenniferIsaBitch(time(NULL));
-
-	jenniferIsaBitch.playGame();
-
-}
+//int main() {
+//	unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count();
+//	iman_game::GuessingGame start(seed);
+//
+//	start.playGame();
+//
+//}
 
 
 
 
 iman_game::GuessingGame::GuessingGame(unsigned int seed)
-	                   : rangeOfNumberToGuess(50), player1(nullptr),
-	                     player2(nullptr)
+	                   : generator(seed),rangeOfNumberToGuess(50),
+	                     player1(nullptr), player2(nullptr),
+						 distribution(0, rangeOfNumberToGuess)
 {
-	std::srand(seed);
 	generateNumber();
 }
 
@@ -34,26 +36,26 @@ iman_game::GuessingGame::~GuessingGame()
 
 void iman_game::GuessingGame::playGame()
 {
-	initializeGame();
+	//initializeGame();
 
-	bool win = false;
-	while (!win)
-	{
-		std::cout << "Player 1's turn to guess." << std::endl;
-		win = checkForWin(player1);
-		if (win) return;
+	//bool win = false;
+	//while (!win)
+	//{
+	//	std::cout << "Player 1's turn to guess." << std::endl;
+	//	win = checkForWin(player1);
+	//	if (win) return;
 
-		std::cout << "Player 2's turn to guess." << std::endl;
-		win = checkForWin(player2);
-	}
+	//	std::cout << "Player 2's turn to guess." << std::endl;
+	//	win = checkForWin(player2);
+	//}
 }
 
 
 
 void iman_game::GuessingGame::generateNumber()
 {
-	//numberToGuess = std::rand() % rangeOfNumberToGuess;
-	numberToGuess = 20;
+	numberToGuess = distribution(generator);
+	
 }
 
 void iman_game::GuessingGame::initializeGame()
@@ -80,6 +82,8 @@ bool iman_game::GuessingGame::checkForWin(Player * player)
 void iman_game::GuessingGame::initializePlayers()
 {
 	PlayerCreation createPlayers(gameMode, player1, player2);
+	//player1->setNumberRange(rangeOfNumberToGuess);
+	//player2->setNumberRange(rangeOfNumberToGuess);
 }
 
 

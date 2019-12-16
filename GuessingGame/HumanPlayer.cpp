@@ -5,13 +5,12 @@
 iman_game::HumanPlayer::HumanPlayer()
 	:Player()
 {
-
+	playerType = "Human";
 }
+
+
 
 int iman_game::HumanPlayer::getGuess()
 {
-	std::cout << "Enter Guess: ";
-	std::cin >> guess;
-
 	return guess;
 }

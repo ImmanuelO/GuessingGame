@@ -4,3 +4,4 @@
 iman_game::Player::Player() : guess(0)
 {
 }
+

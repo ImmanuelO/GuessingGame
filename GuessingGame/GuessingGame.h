@@ -1,5 +1,6 @@
 #pragma once
 #include "GameMode.h"
+#include <random>
 
 namespace iman_game {
 
@@ -18,6 +19,8 @@ namespace iman_game {
 		int numberToGuess;
 		int rangeOfNumberToGuess;
 
+		std::default_random_engine generator;
+		std::uniform_int_distribution<int> distribution;
 		GameMode gameMode;
 		Player* player1;
 		Player* player2;

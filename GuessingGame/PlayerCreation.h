@@ -18,6 +18,6 @@ namespace iman_game {
 		void singlePlayer(Player*& player1, Player*& player2);
 		void multiPlayer(Player*& player1, Player*& player2);
 		void computerPlayer(Player*& player1, Player*& player2);
-
+		unsigned int seed;
 	};
 }

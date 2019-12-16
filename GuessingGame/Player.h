@@ -1,5 +1,5 @@
 #pragma once
-
+#include <string>
 namespace iman_game {
 	class Player
 	{
@@ -8,8 +8,11 @@ namespace iman_game {
 
 		virtual int getGuess() = 0;
 
+
 	protected:
 		int guess;
+		std::string playerType;
+		
 	};
 
 }

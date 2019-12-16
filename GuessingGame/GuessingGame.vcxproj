@@ -153,15 +153,18 @@
   <ItemGroup>
     <ClInclude Include="ComputerPlayer.h" />
     <ClInclude Include="GameMode.h" />
+    <ClInclude Include="UniqueNumberVector.h" />
     <ClInclude Include="GuessingGame.h" />
     <ClInclude Include="HumanPlayer.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerCreation.h" />
+    <ClInclude Include="RNG.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ComputerPlayer.cpp" />
     <ClCompile Include="GameMode.cpp" />
+    <ClCompile Include="UniqueNumberVector.cpp" />
     <ClCompile Include="GuessingGame.cpp" />
     <ClCompile Include="HumanPlayer.cpp" />
     <ClCompile Include="pch.cpp">
@@ -172,6 +175,7 @@
     </ClCompile>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerCreation.cpp" />
+    <ClCompile Include="RNG.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

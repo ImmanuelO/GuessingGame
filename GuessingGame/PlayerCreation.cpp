@@ -4,11 +4,14 @@
 #include "Player.h"
 #include "HumanPlayer.h"
 #include "ComputerPlayer.h"
+#include <chrono>
 
 iman_game::PlayerCreation::PlayerCreation(GameMode & gameSelected,
 	                                      Player *& player1,
 	                                      Player *&player2)
 {
+	seed = std::chrono::system_clock::now().time_since_epoch().count();
+
 	switch (gameSelected.currentgameMode())
 	{
 	case GameType::SINGLE_PLAYER:
