@@ -1,6 +1,7 @@
 #pragma once
 #include "GameMode.h"
-#include <random>
+#include "RNG.h"
+
 
 namespace iman_game {
 
@@ -10,7 +11,7 @@ namespace iman_game {
 	class GuessingGame
 	{
 	public:
-		GuessingGame(unsigned int seed);
+		GuessingGame();
 		~GuessingGame();
 
 		void playGame();
@@ -19,16 +20,19 @@ namespace iman_game {
 		int numberToGuess;
 		int rangeOfNumberToGuess;
 
-		std::default_random_engine generator;
-		std::uniform_int_distribution<int> distribution;
+		RNG randomNumber;
 		GameMode gameMode;
 		Player* player1;
 		Player* player2;
 
-		void generateNumber();
-		void initializePlayers();
-		void initializeGame();
+		void generateNumberToGuess();
 		bool checkForWin(Player * player);
+		void initializeGame();
+		void createPlayers();
+		void initializePlayers();
+		void setRange();
+		void displayPreviousGuess();
+		void displayGuessHighOrLow(Player*);
 		
 
 	};

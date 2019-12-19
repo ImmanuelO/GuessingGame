@@ -58,7 +58,7 @@ void iman_game::GameMode::displaySelectedGameMode()
 	}
 }
 
-	void iman_game::GameMode::clearScreen()
+	void iman_game::clearScreen()
 {
 
 	HANDLE                     hStdOut;

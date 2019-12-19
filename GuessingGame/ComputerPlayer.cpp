@@ -3,25 +3,9 @@
 #include <iostream>
 
 
-
-int main() {
-
-	iman_game::ComputerPlayer player;
-
-	player.setInitialRange(0, 50);
-	int length{52};
-
-	for (size_t i = 0; i < length; i++)
-	{
-		std::cout << i << ". " << player.getGuess() <<"\n";
-	}
-
-}
-
 iman_game::ComputerPlayer::ComputerPlayer()
 	      :Player()
 {
-	playerType = "Computer";
 }
 
 int iman_game::ComputerPlayer::getGuess()
@@ -35,21 +19,6 @@ int iman_game::ComputerPlayer::getGuess()
 	return guess;
 }
 
-void iman_game::ComputerPlayer::setInitialRange(int lower, int upper)
-{
-	range.lowNumberRange = lower;
-	range.upperNumberRange = upper;
-
-	rangeSize = (upper - lower) + 1;
-
-}
-
-void iman_game::ComputerPlayer::isGuessHighOrLow(bool lowOrHigh)
-{
-	this->guessIsHigh = lowOrHigh;
-	setnewRange();
-}
-
 
 // Private Functions
 void iman_game::ComputerPlayer::checkIfPreviouslyGenerated()
@@ -61,17 +30,6 @@ void iman_game::ComputerPlayer::checkIfPreviouslyGenerated()
 	store.addNumbertoVector(guess);
 }
 
-void iman_game::ComputerPlayer::setnewRange()
-{
-	if (guessIsHigh)
-	{
-		range.upperNumberRange = guess;
-	}
-	else
-	{
-		range.lowNumberRange = guess;
-	}
-}
 
 void iman_game::ComputerPlayer::checkIfGuessedAllNumbers()
 {

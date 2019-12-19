@@ -2,6 +2,8 @@
 
 
 namespace iman_game {
+	void clearScreen();
+
 	enum class GameType 
 	{
 		SINGLE_PLAYER = 1,
@@ -15,14 +17,11 @@ namespace iman_game {
 		GameMode();
 
 		void selectGameMode();
+		void displaySelectedGameMode();
 		GameType currentgameMode();
 	
 	private:
 		GameType gameMode;
-
-		void displaySelectedGameMode();
-
-		void clearScreen();
 
 		
 	};

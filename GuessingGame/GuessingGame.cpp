@@ -1,32 +1,30 @@
 #include "pch.h"
 #include <iostream>
 #include <iomanip>
-#include <chrono>
 #include "GameMode.h"
 #include "GuessingGame.h"
 #include "Player.h"
 #include "PlayerCreation.h"
-#include <random>
-
-
-//int main() {
-//	unsigned int seed = std::chrono::system_clock::now().time_since_epoch().count();
-//	iman_game::GuessingGame start(seed);
-//
-//	start.playGame();
-//
-//}
 
 
 
+int main() {
+	iman_game::GuessingGame start;
 
-iman_game::GuessingGame::GuessingGame(unsigned int seed)
-	                   : generator(seed),rangeOfNumberToGuess(50),
-	                     player1(nullptr), player2(nullptr),
-						 distribution(0, rangeOfNumberToGuess)
-{
-	generateNumber();
+	start.playGame();
+
 }
+
+
+
+
+iman_game::GuessingGame::GuessingGame()
+	                    :rangeOfNumberToGuess(50),
+	                     player1(nullptr), player2(nullptr)
+{
+	generateNumberToGuess();
+}
+
 
 iman_game::GuessingGame::~GuessingGame()
 {
@@ -36,55 +34,115 @@ iman_game::GuessingGame::~GuessingGame()
 
 void iman_game::GuessingGame::playGame()
 {
-	//initializeGame();
+	initializeGame();
 
-	//bool win = false;
-	//while (!win)
-	//{
-	//	std::cout << "Player 1's turn to guess." << std::endl;
-	//	win = checkForWin(player1);
-	//	if (win) return;
+	int gameTick{0};
+	bool win = false;
 
-	//	std::cout << "Player 2's turn to guess." << std::endl;
-	//	win = checkForWin(player2);
-	//}
+	while (!win)
+	{
+		gameTick++;
+		if (gameTick = 7) {
+			iman_game::clearScreen();
+		}
+
+		gameMode.displaySelectedGameMode();
+		displayPreviousGuess();
+		
+		std::cout << std::setw(20) << "Player 1's turn to guess." << std::endl;
+		player1->getGuess();
+		win = checkForWin(player1);
+		if (win) return;
+
+		std::cout << std::setw(5) << "Player 2's turn to guess." << std::endl;
+		player2->getGuess();
+		win = checkForWin(player2);
+
+	}
 }
 
-
-
-void iman_game::GuessingGame::generateNumber()
+void iman_game::GuessingGame::generateNumberToGuess()
 {
-	numberToGuess = distribution(generator);
-	
-}
-
-void iman_game::GuessingGame::initializeGame()
-{
-	gameMode.selectGameMode();
-	initializePlayers();
+	numberToGuess = randomNumber.generateNumberBetween(0, rangeOfNumberToGuess);
 }
 
 bool iman_game::GuessingGame::checkForWin(Player * player)
 {
 
-	if (numberToGuess == player->getGuess())
+	if (numberToGuess == player->getPreviousGuess())
 	{
-		std::cout << "You're right! You win!" << std::endl;
+		std::cout << player->getPreviousGuess() << std::endl;
+		std::cout << "You're right! You win!\n" << std::endl;
 		return true;
 	}
-	else if (numberToGuess < player->getGuess())
-		std::cout << "Your guess is too high." << std::endl;
+	else if (numberToGuess < player->getPreviousGuess())
+	{
+		std::cout << player->getPreviousGuess() << std::endl;
+		std::cout << "Your guess is too high.\n" << std::endl;
+		player->guessIsHigh(true);
+	}
 	else
-		std::cout << "Your guess is too low." << std::endl;
+	{
+		std::cout << player->getPreviousGuess() << std::endl;
+		std::cout << "Your guess is too low.\n" << std::endl;
+		player->guessIsHigh(false);
+	}
+
 	return false;
+}
+
+
+
+void iman_game::GuessingGame::initializeGame()
+{
+	gameMode.selectGameMode();
+	createPlayers();
+}
+
+
+void iman_game::GuessingGame::createPlayers()
+{
+	PlayerCreation createPlayers(gameMode, player1, player2);
+	setRange();
+}
+void iman_game::GuessingGame::setRange()
+{
+	std::cout << "Set Guessing Range: ";
+	std::cin >> rangeOfNumberToGuess;
+	initializePlayers();
 }
 
 void iman_game::GuessingGame::initializePlayers()
 {
-	PlayerCreation createPlayers(gameMode, player1, player2);
-	//player1->setNumberRange(rangeOfNumberToGuess);
-	//player2->setNumberRange(rangeOfNumberToGuess);
+	player1->setInitialRange(0, rangeOfNumberToGuess);
+	player2->setInitialRange(0, rangeOfNumberToGuess);
 }
+
+void iman_game::GuessingGame::displayPreviousGuess()
+{
+	std::cout << "Player 1 Previous Guess: " << player1->getPreviousGuess()
+											 << std::endl;
+	
+	std::cout << "Guess was ";
+	displayGuessHighOrLow(player1);
+		
+	std::cout << "Player 2 Previous Guess: " << player2->getPreviousGuess()
+											 << std::endl;
+	std::cout << "Guess was ";
+	displayGuessHighOrLow(player2);
+
+	std::cout << std::endl;
+}
+
+void iman_game::GuessingGame::displayGuessHighOrLow(Player* player)
+{
+	if (player->getPreviousGuess() < numberToGuess)
+		std::cout << "Low \n";
+	else
+		std::cout << "High \n";
+}
+
+
 
 
 

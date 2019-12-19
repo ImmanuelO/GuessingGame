@@ -8,10 +8,10 @@ namespace iman_game {
 	public:
 		HumanPlayer();
 
-		int getGuess();
+		int getGuess() override;
 
 	private:
-
+		void getInput();
 	};
 
 }

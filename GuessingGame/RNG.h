@@ -3,11 +3,6 @@
 
 
 namespace iman_game {
-	struct Range {
-		int lowNumberRange;
-		int upperNumberRange;
-	};
-
 	class RNG
 	{
 
