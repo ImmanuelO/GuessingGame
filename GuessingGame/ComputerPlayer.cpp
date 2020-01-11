@@ -33,7 +33,7 @@ void iman_game::ComputerPlayer::checkIfPreviouslyGenerated()
 
 void iman_game::ComputerPlayer::checkIfGuessedAllNumbers()
 {
-	if (rangeSize == store.getVectorSize()) {
+	if (range.rangeSize == store.getVectorSize()) {
 		std::cerr << "MAXIMUM UNIQUE NUMBERS IN RANGE CREATED";
 		exit(2);
 	}

@@ -4,6 +4,7 @@ namespace iman_game {
 	struct Range {
 		int lowNumberRange;
 		int upperNumberRange;
+		int rangeSize;
 	};
 
 	class Player
@@ -20,7 +21,6 @@ namespace iman_game {
 		int guess;
 		int previousGuess;
 		Range range;
-		int rangeSize;
 		bool high;
 
 		void setnewRange();

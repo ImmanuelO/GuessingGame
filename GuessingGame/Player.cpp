@@ -19,7 +19,7 @@ void iman_game::Player::setInitialRange(int lower, int upper)
 	range.lowNumberRange = lower;
 	range.upperNumberRange = upper;
 
-	rangeSize = (upper - lower) + 1;
+	range.rangeSize = (upper - lower);
 }
 
 void iman_game::Player::guessIsHigh(bool high)

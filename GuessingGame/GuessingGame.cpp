@@ -19,10 +19,8 @@ int main() {
 
 
 iman_game::GuessingGame::GuessingGame()
-	                    :rangeOfNumberToGuess(50),
-	                     player1(nullptr), player2(nullptr)
+	                    :player1(nullptr), player2(nullptr)
 {
-	generateNumberToGuess();
 }
 
 
@@ -61,11 +59,6 @@ void iman_game::GuessingGame::playGame()
 	}
 }
 
-void iman_game::GuessingGame::generateNumberToGuess()
-{
-	numberToGuess = randomNumber.generateNumberBetween(0, rangeOfNumberToGuess);
-}
-
 bool iman_game::GuessingGame::checkForWin(Player * player)
 {
 
@@ -97,19 +90,25 @@ void iman_game::GuessingGame::initializeGame()
 {
 	gameMode.selectGameMode();
 	createPlayers();
+	setRange();
+	generateNumberToGuess();
+	initializePlayers();
 }
 
 
 void iman_game::GuessingGame::createPlayers()
 {
 	PlayerCreation createPlayers(gameMode, player1, player2);
-	setRange();
 }
 void iman_game::GuessingGame::setRange()
 {
 	std::cout << "Set Guessing Range: ";
 	std::cin >> rangeOfNumberToGuess;
-	initializePlayers();
+}
+
+void iman_game::GuessingGame::generateNumberToGuess()
+{
+	numberToGuess = randomNumber.generateNumberBetween(0, rangeOfNumberToGuess);
 }
 
 void iman_game::GuessingGame::initializePlayers()
